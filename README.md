@@ -120,5 +120,9 @@ dry run: add a "y" argument to actually write
 uart:~$ cal_write r3 0.972299993 y
 updating r3 (12) to 0.972299993, a7 e8 78 3f
 done
+uart:~$ eeprom read eeprom@50 0 20
+Reading 20 bytes from EEPROM, offset 0...
+00000000: 79 24 7b 44 4f 5e cc 42  5c 20 26 41 a7 e8 78 3f |y${DO^.B \ &A..x?|
+00000010: 42 3e 68 3d                                      |B>h=             |
 uart:~$ reset_bl 
 ```
