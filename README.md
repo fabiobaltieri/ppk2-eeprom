@@ -12,7 +12,9 @@ responsibility for any damage caused to the device.
 
 ## Usage
 
-Flash the firmware to a PPK device using `nrfutil` or any other flashing tool.
+Flash the firmware to a PPK device using `nrfutil` or any other flashing tool,
+binary releases can be found at
+https://github.com/fabiobaltieri/ppk2-eeprom/releases.
 
 Example: `nrfutil dfu usb-serial -pkg ppk2-eeprom.zip -p /dev/ttyACM0`
 
