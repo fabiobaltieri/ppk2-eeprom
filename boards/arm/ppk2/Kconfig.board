@@ -1,0 +1,5 @@
+# SPDX-License-Identifier: Apache-2.0
+
+config BOARD_PPK2
+	bool "PPK2"
+	depends on SOC_NRF52840_QIAA

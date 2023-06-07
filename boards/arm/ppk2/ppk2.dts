@@ -1,0 +1,63 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+/dts-v1/;
+#include <nordic/nrf52840_qiaa.dtsi>
+#include "ppk2-pinctrl.dtsi"
+
+/ {
+	model = "PPK2";
+	compatible = "ppk2";
+
+	chosen {
+		zephyr,console = &cdc_acm_uart;
+		zephyr,shell-uart = &cdc_acm_uart;
+		zephyr,sram = &sram0;
+		zephyr,flash = &flash0;
+	};
+
+	zephyr,user {
+		reset-trigger-gpios = <&gpio0 19 GPIO_ACTIVE_LOW>;
+	};
+};
+
+&gpiote {
+	status = "okay";
+};
+
+&gpio0 {
+	status = "okay";
+};
+
+&gpio1 {
+	status = "okay";
+};
+
+&i2c0 {
+	compatible = "nordic,nrf-twi";
+	status = "okay";
+	pinctrl-0 = <&i2c0_default>;
+	pinctrl-1 = <&i2c0_sleep>;
+	pinctrl-names = "default", "sleep";
+
+        cal_eeprom: eeprom@50 {
+                compatible = "atmel,at24";
+                reg = <0x50>;
+                size = <2048>;
+                pagesize = <32>;
+                address-width = <16>;
+                timeout = <10>;
+        };
+
+};
+
+zephyr_udc0: &usbd {
+	compatible = "nordic,nrf-usbd";
+	status = "okay";
+
+	cdc_acm_uart: cdc_acm_uart {
+		compatible = "zephyr,cdc-acm-uart";
+	};
+};
+

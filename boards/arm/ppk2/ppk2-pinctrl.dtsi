@@ -1,0 +1,20 @@
+/*
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
+&pinctrl {
+	i2c0_default: i2c0_default {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 0, 24)>,
+				<NRF_PSEL(TWIM_SCL, 0, 25)>;
+		};
+	};
+
+	i2c0_sleep: i2c0_sleep {
+		group1 {
+			psels = <NRF_PSEL(TWIM_SDA, 0, 24)>,
+				<NRF_PSEL(TWIM_SCL, 0, 25)>;
+			low-power-enable;
+		};
+	};
+};

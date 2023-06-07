@@ -1,0 +1,44 @@
+# SPDX-License-Identifier: Apache-2.0
+
+if BOARD_PPK2
+
+config BOARD
+	default "ppk2"
+
+config USB_DEVICE_STACK
+	default y
+
+config SERIAL
+	default y
+
+config USB_CDC_ACM
+	default y
+
+config UART_CONSOLE
+	default CONSOLE
+
+config USB_DEVICE_INITIALIZE_AT_BOOT
+	default y
+
+config SHELL_BACKEND_SERIAL_CHECK_DTR
+	default SHELL
+	depends on UART_LINE_CTRL
+
+config UART_LINE_CTRL
+	default SHELL
+
+if LOG
+
+# Logger cannot use itself to log
+choice USB_CDC_ACM_LOG_LEVEL_CHOICE
+	default USB_CDC_ACM_LOG_LEVEL_OFF
+endchoice
+
+# Set USB log level to error only
+choice USB_DEVICE_LOG_LEVEL_CHOICE
+	default USB_DEVICE_LOG_LEVEL_ERR
+endchoice
+
+endif
+
+endif
