@@ -29,13 +29,13 @@ The following commands are available:
 - `float_bytes`: convert a float to bytes
 - `eeprom`: provides raw EEPROM access
 
-To reprogram the device back to the PPK firmware, run the `reset_bl` or
-temporarily connect TP34 to GND. The device will reboot into the bootloader and
-the PPK desktop application will prompt to reprogram it.
+To reprogram the device back to the PPK firmware, run the `reset_bl` shell
+command or temporarily connect TP34 to GND. The device will reboot into the
+bootloader and the PPK desktop application will prompt to reprogram it.
 
 ## Example Usage
 
-```
+```console
 uart:~$ cal_read 
   r0 (  0):  1004.569885254, 79 24 7b 44
   r1 (  4):   102.184196472, 4f 5e cc 42
