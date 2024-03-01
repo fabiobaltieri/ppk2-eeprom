@@ -2,9 +2,6 @@
 
 if BOARD_PPK2
 
-config BOARD
-	default "ppk2"
-
 config USB_DEVICE_STACK
 	default y
 
