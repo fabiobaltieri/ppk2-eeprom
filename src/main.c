@@ -84,7 +84,7 @@ static int cmd_float_bytes(const struct shell *sh, size_t argc, char **argv)
 
 	f = strtof(argv[1], NULL);
 
-	shell_print(sh, "float: %.9f", f);
+	shell_print(sh, "float: %.9f", (double)f);
 	shell_print(sh, "bytes: %02x %02x %02x %02x", x[0], x[1], x[2], x[3]);
 	return 0;
 }
@@ -117,7 +117,7 @@ static int cmd_cal_read(const struct shell *sh, size_t argc, char **argv)
 		shell_print(sh, "%4s (%3d): %15.9f, %02x %02x %02x %02x",
 			    cal_offsets[i].name,
 			    offset,
-			    *f,
+			    (double)*f,
 			    x[0], x[1], x[2], x[3]);
 	}
 
@@ -159,7 +159,7 @@ static int cmd_cal_write(const struct shell *sh, size_t argc, char **argv)
 	shell_print(sh, "updating %s (%d) to %.9f, %02x %02x %02x %02x",
 		    name,
 		    offset,
-		    f,
+		    (double)f,
 		    x[0], x[1], x[2], x[3]);
 
 	if (dry_run) {
