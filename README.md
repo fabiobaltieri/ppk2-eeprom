@@ -18,8 +18,10 @@ https://github.com/fabiobaltieri/ppk2-eeprom/releases.
 
 Example: `nrfutil dfu usb-serial -pkg ppk2-eeprom.zip -p /dev/ttyACM0`
 
-The device will reconnect as a USB CDC-ACM serial port with a shell available
-on it.
+> **Note:** later versions of `nrfutil` doesn't support dfu directly. Install the dfu tool by running 
+`nrfutil install nrf5sdk-tools` to be able to run `nrfutil nrf5sdk-tools dfu ...`.
+
+Later the device will reconnect as a USB CDC-ACM serial port with a shell available on it.
 
 The following commands are available:
 
