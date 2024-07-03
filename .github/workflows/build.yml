@@ -1,0 +1,37 @@
+name: Firmware build
+
+on:
+  push:
+  schedule:
+    - cron: '0 4 * * *'
+  workflow_dispatch:
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          path: firmware
+
+      - name: Setup Zephyr project
+        uses: zephyrproject-rtos/action-zephyr-setup@main
+        with:
+          app-path: firmware
+          toolchains: arm-zephyr-eabi
+
+      - name: Build
+        run: |
+          west build firmware
+
+      - name: Firmware artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: firmware
+          path: build/zephyr/zephyr.hex
