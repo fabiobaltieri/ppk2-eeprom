@@ -26,12 +26,26 @@ jobs:
           app-path: firmware
           toolchains: arm-zephyr-eabi
 
+      - name: Download nrfutil
+        run: |
+          wget "https://files.nordicsemi.com/ui/api/v1/download?repoKey=swtools&path=external/nrfutil/executables/x86_64-unknown-linux-gnu/nrfutil" -O $HOME/nrfutil
+          chmod +x $HOME/nrfutil
+          $HOME/nrfutil install nrf5sdk-tools
+          $HOME/nrfutil --version
+
       - name: Build
         run: |
           west build firmware
+
+      - name: Package
+        run: |
+          $HOME/nrfutil pkg generate \
+            --hw-version 52 --sd-req=0x00 \
+            --application build/zephyr/zephyr.hex \
+            --application-version 1 ppk2-eeprom.zip
 
       - name: Firmware artifact
         uses: actions/upload-artifact@v4
         with:
           name: firmware
-          path: build/zephyr/zephyr.hex
+          path: ppk2-eeprom.zip
