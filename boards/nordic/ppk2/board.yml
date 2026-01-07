@@ -1,5 +1,6 @@
 board:
   name: ppk2
+  full_name: PPK2
   vendor: nordic
   socs:
     - name: nrf52840
